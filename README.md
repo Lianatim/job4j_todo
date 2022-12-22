@@ -29,36 +29,36 @@ Web-приложение для размещения списка задач. П
 Главное окно приложения содержит список задач с указаным статусом "Active" или "Done".
 Для добавления задачи воспользуемся кнопкой "Add task".
 
-![](images/Emptytasks.png)
-![](images/All tasks.png)
+![](images/EmptyTasks.png)
+![](images/AllTasks.png)
 
 Заполняем необходимую информацию и по умолчанию ставится статус "Active" и текущее время
 
-![](images/Add task.png)
+![](images/Addtask.png)
 
 Для уточнения полной информации задачи нужно кликнуть на описание
 
-![](images/Task info.png)
+![](images/TaskInfo.png)
 
 Здесь можно сменить статус на "Done"
 
-![](images/Task info with done.png)
+![](images/TaskInfoWithDone.png)
 
 Редактировать описание задачи
 
-![](images/Update task.png)
+![](images/UpdateTask.png)
 
 Удалить задачу
 
-![](images/Delete task.png)
+![](images/DeleteTask.png)
 
 Вкладка "Done tasks"
 
-![](images/Menu done tasks.png)
+![](images/MenuDoneTasks.png)
 
 Вкладка "Active tasks"
 
-![](images/Menu active tasks.png)
+![](images/MenuActiveTasks.png)
 
 ## Контакты
 
