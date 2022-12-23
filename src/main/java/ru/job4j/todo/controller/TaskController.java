@@ -24,12 +24,12 @@ public class TaskController {
             model.addAttribute("message", "Add new task :)");
         }
         model.addAttribute("tasks", tasks);
-        return "tasks";
+        return "task/tasks";
     }
 
     @GetMapping("/formAddTask")
     public String addTask(Model model) {
-        return "addTask";
+        return "task/add";
     }
 
     @PostMapping("/createTask")
@@ -41,13 +41,13 @@ public class TaskController {
     @GetMapping("/formTaskInfo/{taskId}")
     public String taskInfo(Model model, @PathVariable("taskId") int id) {
         model.addAttribute("task", taskService.findById(id).get());
-        return "taskInfo";
+        return "task/info";
     }
 
     @GetMapping("/formUpdateTask/{taskId}")
     public String formUpdateCandidate(Model model, @PathVariable("taskId") int id) {
         model.addAttribute("task", taskService.findById(id).get());
-        return "updateTask";
+        return "task/update";
     }
 
     @PostMapping("/updateTask")
@@ -64,22 +64,22 @@ public class TaskController {
 
     @GetMapping("/doneTask")
     public String doneTask(Model model) {
-        List<Task> doneTasks = taskService.findByDone();
+        List<Task> doneTasks = taskService.findByDone(true);
         if (doneTasks.isEmpty()) {
             model.addAttribute("message", "There are no done tasks :(");
         }
         model.addAttribute("tasks", doneTasks);
-        return "doneTask";
+        return "task/done";
     }
 
     @GetMapping("/activeTask")
     public String activeTask(Model model) {
-        List<Task> activeTasks = taskService.findByActive();
+        List<Task> activeTasks = taskService.findByDone(false);
         if (activeTasks.isEmpty()) {
             model.addAttribute("message", "There are no active tasks :(");
         }
         model.addAttribute("tasks", activeTasks);
-        return "activeTask";
+        return "task/active";
     }
 
     @GetMapping("/setDone/{taskId}")

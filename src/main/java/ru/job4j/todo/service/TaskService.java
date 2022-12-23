@@ -36,12 +36,8 @@ public class TaskService {
         return taskStore.findByLikeDescription(key);
     }
 
-    public List<Task> findByDone() {
-        return taskStore.findByDone();
-    }
-
-    public List<Task> findByActive() {
-        return taskStore.findByActive();
+    public List<Task> findByDone(boolean done) {
+        return taskStore.findByDone(done);
     }
 
     public Optional<Task> findById(Integer id) {

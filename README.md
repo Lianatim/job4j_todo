@@ -6,23 +6,25 @@ Web-приложение для размещения списка задач. П
 
 ## Стек технологий
 
-- **Сборка приложения в Maven**
-- **Java 18**
-- **Spring Boot**
-- **Lombok**
-- **Hibernate, HQL**
-- **HTML, Thymeleaf, BOOTSTRAP,**
+- **Сборка приложения в Maven 3.8**
+- **Java 17**
+- **Spring Boot 2.7.3**
+- **Lombok 1.18.22**
+- **Hibernate 5.6.11**
+- **HTML 5**
+- **Thymeleaf 2.7.3**
+- **BOOTSTRAP 4.4.1**
 
 ## Требования к окружению
 
- - **Java 18**
+ - **Java 17**
  - **Maven 3.8**
  - **PostgresSQL 14**
 
 ## Запуск проекта
 
-- **Создать БД create database todo;**
-- **Запустить проект по команде mvn spring-boot:run**
+- **Создать БД ```create database todo;```**
+- **Запустить проект по команде ```mvn spring-boot:run```**
 
 ## Взаимодействие с приложением
 

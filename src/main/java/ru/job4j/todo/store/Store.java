@@ -19,9 +19,7 @@ public interface Store {
 
     Optional<Task> findById(Integer id);
 
-    List<Task> findByDone();
-
-    List<Task> findByActive();
+    List<Task> findByDone(boolean done);
 
     boolean setDone(Integer id);
 

@@ -96,22 +96,11 @@ public class TaskStore implements Store {
     }
 
     @Override
-    public List<Task> findByDone() {
+    public List<Task> findByDone(boolean done) {
         Session session = sf.openSession();
         session.beginTransaction();
         Query<Task> query = session.createQuery("from Task as t where t.done = :fDone", Task.class);
-        List<Task> rsl = query.setParameter("fDone", true).list();
-        session.getTransaction().commit();
-        session.close();
-        return rsl;
-    }
-
-    @Override
-    public List<Task> findByActive() {
-        Session session = sf.openSession();
-        session.beginTransaction();
-        Query<Task> query = session.createQuery("from Task as t where t.done = :fDone", Task.class);
-        List<Task> rsl = query.setParameter("fDone", false).list();
+        List<Task> rsl = query.setParameter("fDone", done).list();
         session.getTransaction().commit();
         session.close();
         return rsl;
