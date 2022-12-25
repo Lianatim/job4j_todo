@@ -29,7 +29,7 @@
     <header th:insert="blocks/header :: header"></header>
     <form>
         <button type="submit" class="btn btn-success mt-1 col-12"
-                th:formaction="@{/formAddTask}">Add task
+                th:formaction="@{/tasks/formAdd}">Add task
         </button>
     </form>
     <br>
@@ -49,7 +49,7 @@
                     <tr align="center" th:each="task: ${tasks}">
                         <td th:text="${task.id}"></td>
                         <td>
-                            <a th:href="@{|/formTaskInfo/${task.id}|}">
+                            <a th:href="@{|/tasks/formInfo/${task.id}|}">
                                 <span th:text="${task.description}"></span>
                             </a>
                         </td>

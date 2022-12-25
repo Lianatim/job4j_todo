@@ -11,6 +11,7 @@ import java.util.List;
 
 import static ru.job4j.todo.util.HttpSetSession.setSession;
 
+@RequestMapping("/tasks")
 @Controller
 public class TaskController {
 
@@ -20,7 +21,7 @@ public class TaskController {
         this.taskService = taskService;
     }
 
-    @GetMapping("/tasks")
+    @GetMapping("")
     public String tasks(Model model, HttpSession httpSession) {
         List<Task> tasks = taskService.findAll();
         if (tasks.isEmpty()) {
@@ -31,46 +32,52 @@ public class TaskController {
         return "task/tasks";
     }
 
-    @GetMapping("/formAddTask")
+    @GetMapping("/formAdd")
     public String addTask(Model model, HttpSession httpSession) {
         setSession(model, httpSession);
         return "task/add";
     }
 
-    @PostMapping("/createTask")
+    @PostMapping("/create")
     public String createTask(@ModelAttribute Task task) {
         taskService.add(task);
         return "redirect:/tasks";
     }
 
-    @GetMapping("/formTaskInfo/{taskId}")
+    @GetMapping("/formInfo/{taskId}")
     public String taskInfo(Model model, @PathVariable("taskId") int id, HttpSession httpSession) {
         model.addAttribute("task", taskService.findById(id).get());
         setSession(model, httpSession);
         return "task/info";
     }
 
-    @GetMapping("/formUpdateTask/{taskId}")
+    @GetMapping("/formUpdate/{taskId}")
     public String formUpdateCandidate(Model model, @PathVariable("taskId") int id, HttpSession httpSession) {
         model.addAttribute("task", taskService.findById(id).get());
         setSession(model, httpSession);
         return "task/update";
     }
 
-    @PostMapping("/updateTask")
+    @PostMapping("/update")
     public String updateTask(@ModelAttribute Task task) {
+        if (!taskService.replace(task.getId(), task)) {
+            return "redirect:/tasks/fail";
+        }
         taskService.replace(task.getId(), task);
         return "redirect:/tasks";
     }
 
-    @GetMapping("/deleteTask/{taskId}")
+    @GetMapping("/delete/{taskId}")
     public String deleteTask(Model model, @PathVariable("taskId") int id, HttpSession httpSession) {
+        if (!taskService.delete(id)) {
+            return "redirect:/tasks/fail";
+        }
         taskService.delete(id);
         setSession(model, httpSession);
         return "redirect:/tasks";
     }
 
-    @GetMapping("/doneTask")
+    @GetMapping("/done")
     public String doneTask(Model model, HttpSession httpSession) {
         List<Task> doneTasks = taskService.findByDone(true);
         if (doneTasks.isEmpty()) {
@@ -81,7 +88,7 @@ public class TaskController {
         return "task/done";
     }
 
-    @GetMapping("/activeTask")
+    @GetMapping("/active")
     public String activeTask(Model model, HttpSession httpSession) {
         List<Task> activeTasks = taskService.findByDone(false);
         if (activeTasks.isEmpty()) {
@@ -94,16 +101,22 @@ public class TaskController {
 
     @GetMapping("/setDone/{taskId}")
     public String setDone(Model model, @PathVariable("taskId") int id, HttpSession httpSession) {
+        if (!taskService.setDone(id)) {
+            return "redirect:/tasks/fail";
+        }
         taskService.setDone(id);
         setSession(model, httpSession);
-        return "redirect:/formTaskInfo/{taskId}";
+        return "redirect:/tasks/formInfo/{taskId}";
     }
 
     @GetMapping("/setActive/{taskId}")
     public String setActive(Model model, @PathVariable("taskId") int id, HttpSession httpSession) {
+        if (!taskService.setActive(id)) {
+            return "redirect:/tasks/fail";
+        }
         taskService.setActive(id);
         setSession(model, httpSession);
-        return "redirect:/formTaskInfo/{taskId}";
+        return "redirect:/tasks/formInfo/{taskId}";
     }
 
 }

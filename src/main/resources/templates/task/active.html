@@ -43,7 +43,7 @@
                     <tr align="center" th:each="task: ${tasks}">
                         <td th:text="${task.id}"></td>
                         <td>
-                            <a th:href="@{|/formTaskInfo/${task.id}|}">
+                            <a th:href="@{|/tasks/formInfo/${task.id}|}">
                                 <span th:text="${task.description}"></span>
                             </a>
                         </td>

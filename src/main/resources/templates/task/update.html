@@ -27,7 +27,7 @@
         Update task
       </div>
       <div class="card-body">
-        <form th:action="@{/updateTask}" method="POST" th:object="${task}">
+        <form th:action="@{/tasks/update}" method="POST" th:object="${task}">
           <input type="hidden" name="id" th:field="*{id}"/>
           <div class="form-group">
             <label for="description" class="col">Description

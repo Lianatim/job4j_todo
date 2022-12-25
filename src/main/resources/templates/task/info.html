@@ -46,17 +46,17 @@
             <form>
                 <span th:if="${!task.done}">
                             <button type="submit" class="btn btn-success ml-3"
-                                    th:formaction="@{|/setDone/${task.id}|}">Done</button>
+                                    th:formaction="@{|/tasks/setDone/${task.id}|}">Done</button>
                         </span>
                 <span th:if="${task.done}">
                             <button type="submit" class="btn btn-primary ml-3"
-                                    th:formaction="@{|/setActive/${task.id}|}">Active</button>
+                                    th:formaction="@{|/tasks/setActive/${task.id}|}">Active</button>
                         </span>
                 <button type="submit" class="btn btn-warning ml-2"
-                        th:formaction="@{|/formUpdateTask/${task.id}|}">Edit
+                        th:formaction="@{|/tasks/formUpdate/${task.id}|}">Edit
                 </button>
                 <button type="submit" class="btn btn-danger ml-1"
-                        th:formaction="@{|/deleteTask/${task.id}|}">Delete
+                        th:formaction="@{|/tasks/delete/${task.id}|}">Delete
                 </button>
             </form>
         </div>
