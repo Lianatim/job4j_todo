@@ -18,11 +18,18 @@ public class UserStore {
 
     public Optional<User> add(User user) {
         Session session = sf.openSession();
-        session.beginTransaction();
-        session.save(user);
-        session.getTransaction().commit();
-        session.close();
-        return Optional.of(user);
+        Optional<User> userAdd = Optional.empty();
+        try {
+            session.beginTransaction();
+            session.save(user);
+            session.getTransaction().commit();
+            userAdd = Optional.of(user);
+        } catch (Exception e) {
+            session.getTransaction().rollback();
+        } finally {
+            session.close();
+        }
+        return userAdd;
     }
 
     public Optional<User> findUserByLoginAndPassword(String login, String password) {
