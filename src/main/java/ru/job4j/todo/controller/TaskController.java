@@ -61,7 +61,7 @@ public class TaskController {
     @PostMapping("/update")
     public String updateTask(@ModelAttribute Task task) {
         if (!taskService.replace(task.getId(), task)) {
-            return "redirect:/tasks/fail";
+            return "redirect:/shared/fail";
         }
         taskService.replace(task.getId(), task);
         return "redirect:/tasks";
@@ -70,7 +70,7 @@ public class TaskController {
     @GetMapping("/delete/{taskId}")
     public String deleteTask(Model model, @PathVariable("taskId") int id, HttpSession httpSession) {
         if (!taskService.delete(id)) {
-            return "redirect:/tasks/fail";
+            return "redirect:/shared/fail";
         }
         taskService.delete(id);
         setSession(model, httpSession);
@@ -102,7 +102,7 @@ public class TaskController {
     @GetMapping("/setDone/{taskId}")
     public String setDone(Model model, @PathVariable("taskId") int id, HttpSession httpSession) {
         if (!taskService.setDone(id)) {
-            return "redirect:/tasks/fail";
+            return "redirect:/shared/fail";
         }
         taskService.setDone(id);
         setSession(model, httpSession);
@@ -112,7 +112,7 @@ public class TaskController {
     @GetMapping("/setActive/{taskId}")
     public String setActive(Model model, @PathVariable("taskId") int id, HttpSession httpSession) {
         if (!taskService.setActive(id)) {
-            return "redirect:/tasks/fail";
+            return "redirect:/shared/fail";
         }
         taskService.setActive(id);
         setSession(model, httpSession);
