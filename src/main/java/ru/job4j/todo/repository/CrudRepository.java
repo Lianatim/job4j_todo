@@ -92,6 +92,8 @@ public class CrudRepository {
                 tx.rollback();
             }
             throw e;
+        } finally {
+            session.close();
         }
     }
 

@@ -63,7 +63,7 @@ public class UserController {
                 user.getLogin(), user.getPassword()
         );
         if (userDb.isEmpty()) {
-            return "redirect:/loginPage?fail=true";
+            return "redirect:/user/loginPage?fail=true";
         }
         HttpSession session = req.getSession();
         session.setAttribute("user", userDb.get());
