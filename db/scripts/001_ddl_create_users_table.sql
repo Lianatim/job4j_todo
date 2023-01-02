@@ -1,4 +1,4 @@
-CREATE TABLE users
+CREATE TABLE IF NOT EXISTS users
 (
     id SERIAL PRIMARY KEY,
     name TEXT NOT NULL,
@@ -6,7 +6,7 @@ CREATE TABLE users
     password TEXT NOT NULL
 );
 
-comment on table todo_user is 'Таблица с пользователями';
-comment on column todo_user.id is 'Имя пользователя';
-comment on column todo_user.login is 'Логин пользователя';
-comment on column todo_user.password is 'Пароль пользователя';
+comment on table users is 'Таблица с пользователями';
+comment on column users.id is 'Имя пользователя';
+comment on column users.login is 'Логин пользователя';
+comment on column users.password is 'Пароль пользователя';
