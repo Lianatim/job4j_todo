@@ -36,12 +36,16 @@
             </p>
             <p>
                 <b>Сompletion status: </b>
-                <span th:if="${task.done}">
-                    <font color="green">Done</font>
-                </span>
-                <span th:if="${!task.done}">
-                    <font color="red">Active</font>
-                </span>
+                <td th:if="${task.done}">
+            <p style="color: green">Done</p>
+            </td>
+            <td th:if="${!task.done}">
+                <p style="color: Red">Active</p>
+            </td>
+            </p>
+            <p>
+                <b>Author: </b>
+            <td th:text="${user.name}"></td>
             </p>
             <form>
                 <span th:if="${!task.done}">

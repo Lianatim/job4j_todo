@@ -37,6 +37,7 @@
                         <th scope="col">Description</th>
                         <th scope="col">Created</th>
                         <th scope="col">Сompletion status</th>
+                        <th scope="col">Author</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -54,6 +55,7 @@
                         <td th:if="${!task.done}">
                             <p style="color: Red">Active</p>
                         </td>
+                        <td th:text="${user.name}"></td>
                     </tr>
                     </tbody>
                 </table>
