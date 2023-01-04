@@ -38,6 +38,7 @@
                         <th scope="col">Created</th>
                         <th scope="col">Сompletion status</th>
                         <th scope="col">Author</th>
+                        <th scope="col">Priority</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -56,6 +57,7 @@
                             <p style="color: Red">Active</p>
                         </td>
                         <td th:text="${user.name}"></td>
+                        <td th:text="${task.priority.name}"></td>
                     </tr>
                     </tbody>
                 </table>

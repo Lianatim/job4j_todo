@@ -24,4 +24,8 @@ public class Task {
     @JoinColumn(name = "user_id")
     private User user;
 
+    @ManyToOne
+    @JoinColumn(name = "priority_id")
+    private Priority priority;
+
 }

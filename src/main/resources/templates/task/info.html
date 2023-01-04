@@ -30,23 +30,28 @@
                 <b>№: </b>
                 <span th:text="${task.id}"/>
             </p>
+
             <p>
                 <b> Description: </b>
                 <span th:text="${task.description}"/>
             </p>
+
             <p>
                 <b>Сompletion status: </b>
-                <td th:if="${task.done}">
-            <p style="color: green">Done</p>
-            </td>
-            <td th:if="${!task.done}">
-                <p style="color: Red">Active</p>
-            </td>
+            <td th:if="${task.done}"><span style="color: green">Done</span></td>
+            <td th:if="${!task.done}"><span style="color: Red">Active</span></td>
             </p>
+
             <p>
                 <b>Author: </b>
             <td th:text="${user.name}"></td>
             </p>
+
+            <p>
+                <b>Priority: </b>
+            <td th:text="${task.priority.name}"></td>
+            </p>
+
             <form>
                 <span th:if="${!task.done}">
                             <button type="submit" class="btn btn-success ml-3"
