@@ -52,6 +52,12 @@
             <td th:text="${task.priority.name}"></td>
             </p>
 
+            <p>
+                <b>Category: </b>
+            <td th:each="category: ${task.categories}"
+                th:text="${category.name}"></td>
+            </p>
+
             <form>
                 <span th:if="${!task.done}">
                             <button type="submit" class="btn btn-success ml-3"

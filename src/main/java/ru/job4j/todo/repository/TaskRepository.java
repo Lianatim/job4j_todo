@@ -48,7 +48,7 @@ public class TaskRepository {
      */
     public boolean delete(int taskId) {
         return crudRepository.booleanQuery(
-                "delete from Task where id = :fId",
+                "DELETE FROM Task where id = :fId",
                 Map.of("fId", taskId)
         );
     }
@@ -59,7 +59,7 @@ public class TaskRepository {
      * @return список задач.
      */
     public List<Task> findAll() {
-        return crudRepository.query("from Task", Task.class);
+        return crudRepository.query("FROM Task t JOIN FETCH t.priority JOIN FETCH t.categories", Task.class);
     }
 
     /**
@@ -69,7 +69,7 @@ public class TaskRepository {
      */
     public Optional<Task> findById(int taskId) {
         return crudRepository.optional(
-                "from Task where id = :fId", Task.class,
+                "FROM Task t JOIN FETCH t.priority JOIN FETCH t.categories where t.id = :fId", Task.class,
                 Map.of("fId", taskId)
         );
     }
@@ -81,7 +81,7 @@ public class TaskRepository {
      */
     public List<Task> findByLikeDescription(String key) {
         return crudRepository.query(
-                "from Task where description like :fKey", Task.class,
+                "FROM Task t JOIN FETCH t.priority JOIN FETCH t.categories where description t.like :fKey", Task.class,
                 Map.of("fKey", "%" + key + "%")
         );
     }
@@ -92,7 +92,7 @@ public class TaskRepository {
      * @return список задач по условию выполненные или активные.
      */
     public List<Task> findByDone(boolean done) {
-        return crudRepository.query("from Task as t where t.done = :fDone", Task.class,
+        return crudRepository.query("FROM Task t JOIN FETCH t.priority JOIN FETCH t.categories where t.done = :fDone", Task.class,
                 Map.of("fDone", done)
         );
     }
