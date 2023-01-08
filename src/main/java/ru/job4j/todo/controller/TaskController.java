@@ -3,7 +3,6 @@ package ru.job4j.todo.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import ru.job4j.todo.model.Category;
 import ru.job4j.todo.model.Task;
 import ru.job4j.todo.model.User;
 import ru.job4j.todo.service.CategoryService;
@@ -11,12 +10,10 @@ import ru.job4j.todo.service.PriorityService;
 import ru.job4j.todo.service.TaskService;
 
 import javax.servlet.http.HttpSession;
-import java.util.Arrays;
 import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
 
 import static ru.job4j.todo.util.HttpSetSession.setSession;
+import static ru.job4j.todo.util.ZoneSetTime.setTimeZone;
 
 @RequestMapping("/tasks")
 @Controller
@@ -38,6 +35,8 @@ public class TaskController {
         if (tasks.isEmpty()) {
             model.addAttribute("message", "Add new task :)");
         }
+        User user = (User) httpSession.getAttribute("user");
+        tasks.forEach(task -> setTimeZone(user, task));
         model.addAttribute("tasks", tasks);
         model.addAttribute("categories", categoryService.findAll());
         setSession(model, httpSession);
@@ -66,7 +65,10 @@ public class TaskController {
 
     @GetMapping("/formInfo/{taskId}")
     public String taskInfo(Model model, @PathVariable("taskId") int id, HttpSession httpSession) {
-        model.addAttribute("task", taskService.findById(id).get());
+        User user = (User) httpSession.getAttribute("user");
+        Task task = taskService.findById(id).get();
+        setTimeZone(user, task);
+        model.addAttribute("task", task);
         setSession(model, httpSession);
         return "task/info";
     }

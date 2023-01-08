@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 import ru.job4j.todo.model.Task;
 
 import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -21,7 +22,7 @@ public class TaskStore implements Store {
     public Task add(Task task) {
         Session session = sf.openSession();
         session.beginTransaction();
-        task.setCreated(LocalDateTime.now());
+        task.setCreated(ZonedDateTime.now());
         session.save(task);
         session.getTransaction().commit();
         session.close();

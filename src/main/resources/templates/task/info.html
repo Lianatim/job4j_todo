@@ -37,6 +37,11 @@
             </p>
 
             <p>
+                <b> Created: </b>
+            <td th:text="${#temporals.format(task.created, 'dd-MM-yyyy HH:mm')}"/>
+            </p>
+
+            <p>
                 <b>Сompletion status: </b>
             <td th:if="${task.done}"><span style="color: green">Done</span></td>
             <td th:if="${!task.done}"><span style="color: Red">Active</span></td>

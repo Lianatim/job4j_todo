@@ -23,6 +23,7 @@ public class UserController {
 
     @GetMapping("/formAdd")
     public String addUser(Model model, HttpSession httpSession) {
+        model.addAttribute("userZones", userService.getZones());
         setSession(model, httpSession);
         return "user/add";
     }

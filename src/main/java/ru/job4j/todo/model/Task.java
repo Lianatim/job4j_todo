@@ -3,7 +3,7 @@ package ru.job4j.todo.model;
 import lombok.*;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,7 +20,7 @@ public class Task {
     @EqualsAndHashCode.Include
     private int id;
     private String description;
-    private LocalDateTime created;
+    private ZonedDateTime created;
     private boolean done;
     @ManyToOne
     @JoinColumn(name = "user_id")

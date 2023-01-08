@@ -4,7 +4,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Repository;
 import ru.job4j.todo.model.Task;
 
-import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -21,7 +21,7 @@ public class TaskRepository {
      * @return задача с id.
      */
     public Task add(Task task) {
-        task.setCreated(LocalDateTime.now());
+        task.setCreated(ZonedDateTime.now());
         crudRepository.run(session -> session.persist(task));
         return task;
     }
@@ -35,7 +35,7 @@ public class TaskRepository {
         return crudRepository.booleanQuery(
                 "UPDATE Task SET description = :fDescription, created = :fCreated, done = :fDone   WHERE id = :fId",
                 Map.of("fDescription", task.getDescription(),
-                        "fCreated", LocalDateTime.now(),
+                        "fCreated", ZonedDateTime.now(),
                         "fDone", task.isDone(),
                         "fId", id)
         );
