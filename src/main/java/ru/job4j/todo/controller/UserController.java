@@ -11,6 +11,7 @@ import javax.servlet.http.HttpSession;
 import java.util.Optional;
 
 import static ru.job4j.todo.util.HttpSetSession.setSession;
+import static ru.job4j.todo.util.ZoneSetTime.getZones;
 
 @RequestMapping("/user")
 @Controller
@@ -23,7 +24,7 @@ public class UserController {
 
     @GetMapping("/formAdd")
     public String addUser(Model model, HttpSession httpSession) {
-        model.addAttribute("userZones", userService.getZones());
+        model.addAttribute("userZones", getZones());
         setSession(model, httpSession);
         return "user/add";
     }

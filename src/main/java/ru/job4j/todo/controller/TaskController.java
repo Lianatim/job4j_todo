@@ -3,6 +3,7 @@ package ru.job4j.todo.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import ru.job4j.todo.model.Category;
 import ru.job4j.todo.model.Task;
 import ru.job4j.todo.model.User;
 import ru.job4j.todo.service.CategoryService;
@@ -55,10 +56,11 @@ public class TaskController {
     public String createTask(@ModelAttribute Task task, @RequestParam("category.id") List<Integer> categoriesIDs, HttpSession httpSession) {
         User user = (User) httpSession.getAttribute("user");
         task.setUser(user);
-        if (categoriesIDs.isEmpty()) {
+        List<Category> categories = categoryService.findByIds(categoriesIDs);
+        if (categoriesIDs.isEmpty() || categories.size() != categoriesIDs.size()) {
             return "redirect:/shared/fail";
         }
-        task.setCategories(categoryService.findByIds(categoriesIDs));
+        task.setCategories(categories);
         taskService.add(task);
         return "redirect:/tasks";
     }
@@ -84,10 +86,11 @@ public class TaskController {
 
     @PostMapping("/update")
     public String updateTask(@ModelAttribute Task task, @RequestParam("category.id") List<Integer> categoriesIDs) {
-        if (!taskService.replace(task.getId(), task) || categoriesIDs.isEmpty()) {
+        List<Category> categories = categoryService.findByIds(categoriesIDs);
+        if (!taskService.replace(task.getId(), task) || categoriesIDs.isEmpty() || categories.size() != categoriesIDs.size()) {
             return "redirect:/shared/fail";
         }
-        task.setCategories(categoryService.findByIds(categoriesIDs));
+        task.setCategories(categories);
         taskService.replace(task.getId(), task);
         return "redirect:/tasks";
     }

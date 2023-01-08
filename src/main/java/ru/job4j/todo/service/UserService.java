@@ -4,9 +4,7 @@ import org.springframework.stereotype.Service;
 import ru.job4j.todo.model.User;
 import ru.job4j.todo.repository.UserRepository;
 
-import java.util.ArrayList;
 import java.util.Optional;
-import java.util.TimeZone;
 
 @Service
 public class UserService {
@@ -29,11 +27,4 @@ public class UserService {
         return userRepository.findById(id);
     }
 
-    public ArrayList<TimeZone> getZones() {
-        var zones = new ArrayList<TimeZone>();
-        for (String timeId : TimeZone.getAvailableIDs()) {
-            zones.add(TimeZone.getTimeZone(timeId));
-        }
-        return zones;
-    }
 }
