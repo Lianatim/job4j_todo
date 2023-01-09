@@ -6,6 +6,7 @@ import ru.job4j.todo.model.User;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.TimeZone;
 
 public final class ZoneSetTime {
@@ -23,7 +24,7 @@ public final class ZoneSetTime {
         task.setCreated(zonedDateTime);
     }
 
-    public static ArrayList<TimeZone> getZones() {
+    public static List<TimeZone> getZones() {
         var zones = new ArrayList<TimeZone>();
         for (String timeId : TimeZone.getAvailableIDs()) {
             zones.add(TimeZone.getTimeZone(timeId));
